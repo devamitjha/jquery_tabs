@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Tabs</title>
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery3.1.0.min.js"></script>
+    <script src="js/gsap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Style 1</h2>
+        <ul>
+            <li class="item active" data-tab="home"><i class="fa fa-home"></i>Home</li>
+            <li class="item" data-tab="work"><i class="fa fa-gear"></i>Work</li>
+            <li class="item" data-tab="portfolio"><i class="fa fa-desktop"></i>Portfolio</li>
+            <li class="item" data-tab="contact"><i class="fa fa-paper-plane"></i>Contact</li>
+        </ul>
+        <div class="tab_content">
+            <div id="home" class="content active">Home</div>
+            <div id="work" class="content">Work</div>
+            <div id="portfolio" class="content">Portfolio</div>
+            <div id="contact" class="content">Contact</div>
+        </div>
+    </div>
+
+    <div class="container_2">
+        <h2>Style 2</h2>
+        <div class="tab_content">
+
+            <ul>
+                <li class="tab" data-tab="home_"><i class="fa fa-home"></i>Home</li>
+                <li class="tab" data-tab="work_"><i class="fa fa-gear"></i>Work</li>
+                <li class="tab active" data-tab="portfolio_"><i class="fa fa-desktop"></i>Portfolio</li>
+                <li class="tab" data-tab="contact_"><i class="fa fa-paper-plane"></i>Contact</li>
+            </ul>
+
+            <div id="home_" class="content_">Home</div>
+            <div id="work_" class="content_">Work</div>
+            <div id="portfolio_" class="content_ active">Portfolio</div>
+            <div id="contact_" class="content_">Contact</div>
+        </div>
+    </div>
+    <script>
+        const tl = gsap.timeline();
+        function tabs(elm, elm_2) {
+            $(elm).click(function () {
+                $(elm).removeClass("active");
+                $(elm_2).removeClass("active");
+                $(this).addClass("active");
+                let data_tab = $(this).attr("data-tab");
+                $("#" + data_tab).addClass("active");
+                tl.from(("#" + data_tab), {
+                    duration: .5,
+                    opacity: 0,
+                    y: 20,
+                    expo: "power3.inOut"
+                })
+            })
+        }
+
+        //calling function
+        $(document).ready(function () {
+            tabs(".item", ".content");
+            tabs(".tab", ".content_");
+        })
+
+        //thanks for watching
+        //please subscribe my channel
+    </script>
+</body>
+
+</html>
